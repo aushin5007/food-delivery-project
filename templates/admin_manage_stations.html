@@ -1,0 +1,110 @@
+{% include "adminheader.html" %}
+
+	<!-- start search-->	
+		<div class="banner" >
+			
+<center>
+	<form method="post">
+		{% csrf_token %}
+		{% if up %}
+
+		<h1 style="color: #fff;">Update Stations</h1>
+		<table class="table" style="color: #fff;width: 500px;">
+					<tr>
+			<td>district :</td>
+			<td><input type="text" name="district" readonly value="{{up.district}}" class="form-control" required></td>
+			
+		</tr>
+		<tr>
+			<td>Place :</td>
+			<td><input type="text" name="place" value="{{up.place}}" class="form-control" required></td>
+			
+		</tr>
+		<tr>
+			<td>station name:</td>
+			<td><input type="text" name="stations" value="{{up.sname}}" class="form-control" required></td>
+			<td></td>
+		</tr>
+		
+
+		
+			<td colspan="2" align="center"><input type="submit" name="submitss" value="Update" class="btn btn-warning"></td>
+		</tr>
+		</table>
+
+		{% else %}
+
+		<h1 style="color: #fff;">Add station</h1>
+		<table class="table" style="color: #fff;width: 500px;">
+
+		<tr>
+			<td>District</td>
+			<td>
+				<select name="district" class="form-control" required>
+					<option>Choose</option>
+					<option>Kannur</option>
+					<option>Kozhikkode</option>
+					<option>kasarkode</option>
+					<option>wayanad</option>
+					<option>idukki</option>
+					<option>eranakulam</option>
+					<option>thrissur</option>
+					<option>alappuzha</option>
+					<option>malappuram</option>
+					<option>kollam</option>
+					<option>kottayam</option>
+					<option>pathanamthitta</option>
+					<option>thiruvananthapuram</option>
+
+									
+				</select>
+			</td>
+			
+		</tr>
+		<tr>
+			<td>Place :</td>
+			<td><input type="text" name="place" class="form-control" required></td>
+		</tr>
+		<tr>
+			<td>Staion Name:</td>
+			<td><input type="text" name="stations" class="form-control"  required></td>
+		</tr>
+	
+		
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-success"></td>
+		</tr>
+	</table>
+	</center>
+	{% endif %}
+	<center>
+	<table class="table" style="color: #fff;width: 900px;">
+		<h1 align="center" style="color: #fff;">Stations</h1>
+		<tr>
+			<th>sl no</th>
+
+			<th>Station</th>
+			<th>Place</th>
+			<th>District</th>
+		</tr>
+		{% for row in qry1 %}
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{row.sname}}</td>
+			<td>{{row.place}}</td>
+			<td>{{row.district}}</td>
+			<td><a class="btn btn-warning" href="/update_station/{{row.id}}">Update</a>
+			<a class="btn btn-danger" href="/delete_station/{{row.id}}">Remove</a></td>
+			
+		</tr>
+		{% endfor %}
+				
+		
+			
+		</table>
+	</form>
+</center>
+		</div>
+</div>
+
+{% include "footer.html" %}

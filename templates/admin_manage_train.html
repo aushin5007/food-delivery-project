@@ -1,0 +1,125 @@
+{% include "adminheader.html" %}
+
+	<!-- start search-->	
+		<div class="banner">
+			
+<center>
+	<form method="post">
+
+		{% if up %}
+
+		<table class="table" style="width: 500px;color: #fff;">
+		
+			<h1 style="color: #fff;">Add train</h1>
+			<table class="table" style="width: 500px;color: #fff;">
+			<tr>
+				<td>train Name:</td>
+				<td><input type="text" name="train" class="form-control" required value="{{up.train_name}}"></td>
+				
+			</tr>
+			<tr>
+				<td>starting station :</td>
+				<td>
+					<select name="startstation" class="form-control" required>
+						<option>Select</option>
+						{% for row in q %}
+						<option value="{{ row.id}}">{{ row.sname}}</option>
+						{% endfor %}
+	
+				</td>
+				
+			</tr>
+			<tr>
+				<td>ending station</td>
+				<td>
+					<select name="endstation" class="form-control" required>
+						<option>Select</option>
+						{% for row in q %}
+						<option value="{{ row.id}}">{{ row.sname}}</option>
+						{% endfor %}
+					</select>
+	
+				</td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-warning"></td>
+			</tr>
+		</table>
+{%else%}
+
+
+		<table class="table" style="width: 500px;color: #fff;">
+		
+		<h1 style="color: #fff;">Add train</h1>
+		<table class="table" style="width: 500px;color: #fff;">
+		<tr>
+			<td>train Name:</td>
+			<td><input type="text" name="train" class="form-control" required></td>
+			
+		</tr>
+		<tr>
+			<td>starting station :</td>
+			<td>
+				<select name="startstation" class="form-control" required>
+					<option>Select</option>
+					{% for row in q %}
+					<option value="{{ row.id}}">{{ row.sname}}</option>
+					{% endfor %}
+
+			</td>
+			
+		</tr>
+		<tr>
+			<td>ending station</td>
+			<td>
+				<select name="endstation" class="form-control" required>
+					<option>Select</option>
+					{% for row in q %}
+					<option value="{{ row.id}}">{{ row.sname}}</option>
+					{% endfor %}
+				</select>
+
+			</td>
+			
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-warning"></td>
+		</tr>
+	</table>
+{% endif %}
+	<table class="table" style="width: 1000px;color: #fff;">
+		<h1 align="center" style="color: #fff;">Trains</h1>
+		<tr>
+			<th>Sl.No</th>
+			<th>Train</th>
+			<th>Starting Station</th>
+			<th>Ending Station</th>
+		</tr>
+		{% for row in qry1 %}
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{row.train_name}}</td>
+			<td>{{ row.starting_station.sname }}</td> <!-- Corrected line -->
+			<td>{{ row.ending_station.sname }}</td>
+			<td><a class="btn btn-danger" href="/delete_train/{{row.id}}">Remove</a></td> 
+			<td><a class="btn btn-danger" href="/update_train/{{row.id}}">Update</a></td>
+			<!-- <td><a class="btn btn-primary" href="/admin_view_passengers/{{row.id}}">View Passengers</a></td> -->
+			<td><a class="btn btn-primary" href="/admin_manage_schedule/{{row.id}}">MAnage Schedule</a></td>
+		</tr>
+		{% endfor %}
+			</tr>
+	</table>
+	
+		
+	</form>
+</center>
+		</div>
+</div>
+<!--content-->
+
+
+
+{% include "footer.html" %}

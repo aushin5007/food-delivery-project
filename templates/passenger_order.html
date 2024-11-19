@@ -1,0 +1,52 @@
+{% include "passenger_header.html" %}
+
+<!-- start search-->    
+<div class="banner">
+    <center>
+        <form method="post">
+            <h1 style="color: #fff;">Ordering</h1>
+            <table class="table" style="width: 500px;color: #fff;">
+                <!-- <tr>
+                    <td>Trip :</td>
+                    <td>
+                        <select name="trip" class="form-control" required>
+                            <option>Select</option>
+                            {% for row in q %}
+                            <option value="{{ row.id }}">{{ row.tdate }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr> -->
+                <tr>
+                    <th>Amount</th>
+                    <td><input type="text" name="amount" id="amount" readonly value="{{price}}" class="form-control"></td>
+                </tr>
+    <tr>
+        <th>Required Quantity</th>
+        <td><input required type="number" min="1" oninput="totalSum()"
+                placeholder="Enter your Quantity" name="qty" id="qty"
+                class="form-control"></td>
+    </tr>
+    <tr>
+        <th>Total Amount</th>
+        <td><input type="number" readonly name="total" id="total"
+                class="form-control"></td>
+    </tr> 
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-warning"></td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</div>
+
+
+<script>
+    function totalSum() {
+        var qty = parseInt(document.getElementById("qty").value); // Get the quantity value and parse it as an integer
+        var amount = parseFloat(document.getElementById("amount").value); // Get the amount value and parse it as a float
+        var total = qty * amount; // Calculate the total by multiplying quantity and amount
+        document.getElementById("total").value = total.toFixed(2); // Set the total value with two decimal places
+    }
+</script>
+{% include "footer.html" %}

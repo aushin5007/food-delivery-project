@@ -1,0 +1,44 @@
+{% include "adminheader.html" %}
+
+
+	<!-- start search-->	
+		<div class="banner">
+			
+<center>
+	<form>
+		<h1 style="color: #fff;">VIEW USER</h1>
+		<table class="table" style="color: #fff;width: 1100px;">
+			<tr>
+				<th>First Nmae</th>
+				<th>Last Name</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Pin code</th>
+				<th>Gender</th>
+				<th>Age</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+			{% for row in p %}
+			<tr>
+				<td>{{row.fname}}</td>
+				<td>{{row.lname}}</td>
+				<td>{{row.hname}}</td>
+				<td>{{row.place}}</td>
+				<td>{{row.pincode}}</td>
+				<td>{{row.gender}}</td>
+				<td>{{row.age}}</td>
+				<td>{{row.phone}}</td>
+				<td>{{row.email}}</td>
+			</tr>
+			{% endfor %}
+			
+		</table>
+	</form>
+</center>
+		</div>
+</div>
+<!--content-->
+
+
+{% include "footer.html" %}

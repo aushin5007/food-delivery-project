@@ -1,0 +1,35 @@
+{% include "adminheader.html" %}
+
+<div class="banner">
+    <center>
+        <form>
+            <h1 style="color: #fff;">REPORTED HOTELS</h1>
+            <table class="table" style="width: 980px;color: #fff;">
+                <tr>
+                    <th>Hotel Name</th>
+                    <th>Passenger reported</th>
+                    <th>Reason</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+                {% for row in qry1 %}
+                <tr>
+                    <td>{{ row.hotel.hotel_name }}</td>
+                    <td>{{ row.passenger.fname }}</td>
+                    <td>{{ row.reason_details }}</td>
+                    <td>{{ row.date_time }}</td>
+                    {% if row.status == "Block" %}
+                    <td><a class="btn btn-warning" href="/update_hotel_unblocked/{{ row.hotel_id }}">Unblock</a></td>
+                    {% else %}
+                    <td><a class="btn btn-danger" href="/update_hotel_blocked/{{ row.hotel_id }}">Block</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </center>
+</div>
+
+
+
+{% include "footer.html" %}

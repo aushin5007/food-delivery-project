@@ -1,0 +1,30 @@
+{% include "Passenger_header.html" %}
+
+<!-- start search-->	
+<div class="banner">
+    <center>
+        <form method="post">
+            <h1 style="color: #fff;">FOOD CATEGORY</h1>
+            <div style="width: 700px; margin: 0 auto;">
+                <table class="table" style="width: 100%; color: #fff; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="padding: 10px; background-color: #333;">Sl No.</th>
+                            <th style="padding: 10px; background-color: #333;">Category Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in q %}
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #fff;">{{ forloop.counter }}</td>
+                            <td style="padding: 10px; border: 1px solid #fff;">{{ row.category.category }}</td>
+                            <td  style="padding: 20px; border: 1px solid #fff;" class="btn btn-warning"><a href="/view_menu/{{row.hotel_id}}">Menu And Price</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </center>
+</div>
+{% include 'footer.html' %}

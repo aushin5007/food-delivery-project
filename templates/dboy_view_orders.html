@@ -1,0 +1,51 @@
+{% include 'dboyheader.html' %}
+
+<center>
+
+    <div style="width: 100%;height: 300px;background:url('/static/images/veg2.jpg');background-size: cover;background-position: center;">
+
+    </div>
+    
+    <h1 style="color: white;">Delivery Details</h1><br>
+    <form>
+        <table  class="table" style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <th style="background-color: #f2f2f2; color: #333;">Sl.No</th>
+                <th style="background-color: #f2f2f2; color: #333;">Name</th>
+                <th style="background-color: #f2f2f2; color: #333;">House Name</th>
+                <th style="background-color: #f2f2f2; color: #333;">Quantity</th>
+                <th style="background-color: #f2f2f2; color: #333;">Food Name</th>
+                <th style="background-color: #f2f2f2; color: #333;">Phone</th>
+                <th style="background-color: #f2f2f2; color: #333;">Email</th>
+                <th style="background-color: #f2f2f2; color: #333;">Place</th>
+                <th style="background-color: #f2f2f2; color: #333;">Rate</th>
+                <th style="background-color: #f2f2f2; color: #333;">Status</th>
+            </tr>
+            {% for i in res %}
+            <tr>
+                <td style="color: white;">{{ forloop.counter }}</td>
+                <td style="color: white;">{{ i.passenger.fname }} {{ i.passenger.lname }}</td>
+			
+                <td style="color: white;">{{ i.passenger.hname }}</td>
+                <td style="color: white;">{{ i.qty }}</td>
+                <td style="color: white;">{{ i.menu.food_name }}</td>
+                <td style="color: white;">{{ i.passenger.phone }}</td>
+                <td style="color: white;">{{ i.passenger.email }}</td>
+                <td style="color: white;">{{ i.passenger.place }}</td>
+                <td style="color: white;">{{ i.price }}</td>
+                <td style="color: white;">{{ i.status }}</td>
+                
+                {% if i.status == "paid" %}
+                <td style="background-color: #f2f2f2; color: #333;"><a class="btn btn-primary" href="?action=pickedup&bid={{ i.id }}">pickedup</a></td>
+                {% endif %}    
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+    </form><br><br>
+    
+</center>
+
+{% include 'footer.html' %}

@@ -1,0 +1,37 @@
+{% include "adminheader.html" %}
+
+	<!-- start search-->	
+		<div class="banner">
+			
+<center>
+	<form>
+	<h1 style="color: #fff;">VIEW HOTEL RATING</h1>
+	<table class="table" style="width: 970px;color: #fff;">
+		
+		<tr>
+			<th>Hotel Name</th>
+			<th>Rate</th>
+			<th>Review</th>
+			<th>Date</th>
+			<th>Passenger</th>
+			
+		</tr>
+		{% for row in qry1 %}
+		<tr>
+			<td>{{row.hotel.hotel_name}}</td>
+			<td>{{row.rate}}</td>
+			<td>{{row.review}}</td>
+			<td>{{row.date_time}}</td>
+			<td>{{row.passenger.fname}}{{row.passenger.lname}}</td>
+		</tr>
+	</table>
+		{% endfor %}
+	</form>
+</center>
+		</div>
+</div>
+<!--content-->
+
+
+
+{% include "footer.html" %}

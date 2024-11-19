@@ -1,0 +1,33 @@
+{%include "hotelheader.html" %}
+
+
+<div class="banner">
+    <center>
+        <form>
+            <h1 style="color: #fff;">PAYMENT DETAILS</h1>
+            <table class="table" style="width: 900px;color: #fff;">
+                <tr>
+                    <th>Sl no</th>
+                    <th>Passenger Name</th>
+                    <th>Food Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                </tr>
+                {% for payment in payment %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ payment.booking.passenger.fname }} {{ payment.booking.passenger.lname }}</td>
+                    <td>{{ payment.booking.menu.food_name }}</td>
+                    <td>{{ payment.booking.menu.price }}</td>
+                    <td>{{ payment.booking.qty }}</td>
+                    <td>{{ payment.tdate }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </center>
+</div>
+
+
+{% include "footer.html" %}

@@ -1,0 +1,119 @@
+{% include "hotelheader.html" %}
+<center>
+	<form method="post">
+
+		{% if up %}
+
+		<h1 style="color: wheat;">Update menu</h1>
+		<table class="table" style="width: 500px;color: #fff;">	
+		<tr>
+			<th>first name :</th>
+			<td><input type="text" name="fname" value="{{up.fname}}" class="form-control" required></td>
+		</tr>
+		<tr>
+			<th>last name :</th>
+			<td><input type="text" name="lname" value="{{up.lname}}" class="form-control" required></td>
+		</tr>
+		<tr>
+			<th>house name :</th>
+			<td><input type="text" name="hname" value="{{up.hname}}" class="form-control" required></td>
+		</tr>
+		<tr>
+			<th>place :</th>
+			<td><input type="text" name="place" value="{{up.place}}" class="form-control" required></td>
+		</tr>
+		<tr>
+			<th>phone :</th>
+			<td><input type="text" name="phone" value="{{up.phone}}" class="form-control"  required></td>
+		</tr>
+		<tr>
+			<th>email :</th>
+			<td><input type="email" name="email" value="{{up.email}}" class="form-control" required></td>
+		</tr>
+		
+			<td colspan="2" align="center"><input type="submit" name="submitss" value="Update" required class="btn btn-success"></td>
+		</tr>
+		</table>
+		{% else %}
+
+
+		<h1 style="color: wheat;">Add Delivery Boys</h1>
+		<table class="table" style="width: 500px;color: #fff;">
+
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="fname" pattern="[a-zA-Z,\]{30}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="lname" pattern="[a-zA-Z,\]{30}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>House Name</th>
+				<td><input type="text" name="hname" pattern="[a-zA-Z,\]{30}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" name="place" pattern="[a-zA-Z,\]{30}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>phone</th>
+				<td><input type="text" name="phone" pattern="[0-9]{10}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>email</th>
+				<td><input type="text" name="email" required class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"></td>
+			</tr>
+			</tr>
+					<tr>
+					<th>User Name</th>
+					<td><input type="text" name="username" value="" class="form-control" required pattern="[0-9a-zA-Z]{0,30}"></td>
+				</tr>
+				<tr>
+					<!-- <th>Password</th>
+					<td><input type="Password" name="password" value="" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 5 or more characters" required>  -->
+					<th>Password</th>
+					<td><input type="Password" name="password" value="" class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 5 or more characters"> 
+			</td>
+
+						</tr>
+				
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="ADD" class="btn btn-warning"></td>
+			</tr>
+		</table>
+
+		{% endif %}
+
+
+
+		<h1 style="color: wheat;"> Delivery Boys</h1>
+		<table class="table" style="width: 500px;color: #fff;">
+			<tr>
+				<th>Sl no</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>House Name</th>
+				<th>Place</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+			{% for row in qry1 %}
+			<tr>
+				<td>{{forloop.counter}}</td>
+				<td>{{row.fname}}</td>
+				<td>{{row.lname}}</td>
+				<td>{{row.hname}}</td>
+				<td>{{row.place}}</td>
+				<td>{{row.phone}}</td>
+				<td>{{row.email}}</td>
+				<td><a href="/update_dboy_register/{{row.id}}" class="btn btn-danger">Update </a>
+					<br>
+					<a href="/delete_dboy_register/{{row.id}}" class="btn btn-success">Remove</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		
+	</form>
+</center>
+{% include "footer.html" %}

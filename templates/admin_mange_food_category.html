@@ -1,0 +1,55 @@
+{% include "adminheader.html"  %}
+
+	<!-- start search-->	
+		<div class="banner">
+			
+	<center>
+		<form action="" method='post'>
+		<h1 style="color: #fff;">Add Category</h1>
+	{% if up%}
+		<table class="table" style="width: 500px;color: #fff;">
+		<!-- <tr>
+			<td>Food Category :</td>
+			<td><input type="text" name="category" class="form-control" required value="{{up.category}}"></td>
+		</tr> -->
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-success"></td>
+		</tr>
+	</table>
+{% else %}
+	<table class="table" style="width: 500px;color: #fff;">
+		<tr>
+			<td>Food Category :</td>
+			<td><input type="text" name="category" class="form-control" required></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-success"></td>
+		</tr>
+	</table>
+{% endif %}
+</center>
+<center>
+	<table class="table" style="width: 700px;color: #fff;">
+		<h1 align="center" style="color: #fff;">Category</h1>
+		<tr>
+			<th>Sl. No</th>
+
+			<th>Category</th>
+		</tr>
+		{% for row in qry1 %}
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{row.category}}</td>
+			<td><a class="btn btn-danger" href="/delete_category/{{row.id}}">Remove</a></td>
+			<td><a class="btn btn-danger" href="/update_category/{{row.id}}">update</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+	</form>
+	</center>
+		</div>
+</div>
+<!--content-->
+
+
+{% include "footer.html"  %}

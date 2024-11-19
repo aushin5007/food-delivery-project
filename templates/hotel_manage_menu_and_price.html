@@ -1,0 +1,112 @@
+{% include "hotelheader.html"  %}
+
+	<!-- start search-->	
+		<div class="banner">
+			
+	<center>
+		<form  method='post' enctype="multipart/form-data">
+
+		{% if up %}
+
+		<h1 style="color: #fff;">Update Menu</h1>
+		<table class="table" style="width: 500px;color: #fff;">
+		<tr>
+			<th>category :</th>
+			<td><input type="text" class="form-control" readonly name="category" value="{{up.category}}" required></td>
+			
+		</tr>
+		<tr>
+			<th>food name :</th>
+			<td><input type="text" class="form-control" name="food_name" value="{{up.food_name}}" required></td>
+		</tr>
+        <tr>
+			<th>Image</th>
+			<td>
+				<img src="/static/media/{{up.image}}" width="100" height="100" alt="">
+				
+				<input type="file" name="image" id="" accept="image/*" required class="form-control" value="{{up.image}}"></td>
+		</tr>
+		<tr>
+			<th>price :</th>
+			<td><input type="text" class="form-control" name="price" value="{{up.price}}" required></td>
+		</tr>
+		<tr>
+			<th>quantity :</th>
+			<td><input type="text" name="quantity" class="form-control" value="{{up.quantity}}" required></td>
+		</tr>
+		
+			<td colspan="2" align="center"><input type="submit" name="submitss" value="Update" class="btn btn-warning"></td>
+		</tr>
+		</table>
+
+		{% else %}
+
+		<h1 style="color: #fff;">Add Menu</h1>
+		<table class="table" style="width: 500px;color: #fff;">
+		<tr>
+			<th>category</th>
+			<td>
+				<select name="category" class="form-control" required>
+					<option>Select</option>
+					{% for row in q %}
+					<option value="{{row.id}}">{{row.category}}</option>
+					{% endfor %}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>food name :</th>
+			<td><input type="text" name="food_name" class="form-control" required></td>
+		</tr>
+		<tr>
+			<th>image :</th>
+			<td><input type="file" name="image" class="form-control" required></td>
+		</tr>
+		<tr>
+			<th>price :</th>
+			<td><input type="text" name="price" class="form-control" required></td>
+		</tr>
+		<tr>
+			<th>quantity :</th>
+			<td><input type="text" name="quantity" class="form-control" required></td>
+		</tr>
+		
+		
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-success"></td>
+		</tr>
+	</table>
+	{% endif %}
+	<table class="table" style="width: 1000px;color: #fff;">
+		<h1 align="center" style="color: #fff;">Menu</h1>
+		<tr>
+			<th>sl no</th>
+			<th>category</th>
+			<th>food name</th>
+			<th>image</th>
+			<th>price</th>
+			<th>quantity</th>
+		</tr>
+		{% for row in qry1 %}
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{row.category.category}}</td>
+			<td>{{row.food_name}}</td>
+			<td><img src="/static/media/{{row.image}}" width="100" height="100" alt=""></td>
+			<td>{{row.price}}</td>
+			<td>{{row.quantity}}</td>
+			<td><a class="btn btn-warning" href="/update_hotel_manage_menu_and_price/{{row.id}}">Update</a>
+			<a class="btn btn-danger" href="/delete_hotel_manage_menu_and_price/{{row.id}}">Remove</a></td>
+			<td><a class="btn btn-primary" href="/hotel_view_booking_and_accept/{{row.id}}">Bookings</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+	</form>
+	</center>
+		</div>
+</div>
+<!--content-->
+
+
+
+{% include "footer.html" %}

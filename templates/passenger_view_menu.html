@@ -1,0 +1,37 @@
+
+{% include "passenger_header.html" %}
+<div class="banner">
+    
+<center>
+<table class="table" style="width: 1000px;color: #fff;">
+    <h1 align="center" style="color: #fff;">Menu</h1>
+    <tr>
+        <th>sl no</th>
+        <th>category</th>
+        <th>food name</th>
+        <th>image</th>
+        <th>price</th>
+        <th>quantity</th>
+    </tr>
+    {% for row in qry %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{row.category.category}}</td>
+        <td>{{row.food_name}}</td>
+        <td><img src="/static/media/{{row.image}}" width="100" height="100" alt=""></td>
+        <td>{{row.price}}</td>
+        <td>{{row.quantity}}</td>
+        <td class="btn btn-success"><a href="/order/{{row.id}}/{{row.price}}">Order Here</a></td>
+
+    </tr>
+    {% endfor %}
+</table>
+</form>
+</center>
+    </div>
+</div>
+<!--content-->
+
+
+
+{% include "footer.html" %}

@@ -1,0 +1,57 @@
+{% include "passenger_header.html" %}
+
+
+
+<div class="banner">
+    <center>
+        <form method="post" id="hotelSearchForm">
+            {% csrf_token %}
+            <input type="text" id="hotelSearchInput" placeholder="Search By Place">
+        </form>
+        <br><br><br><br>
+        <table class="table" style="width: 980px;color: #fff;">
+            <h1 style="color: #fff;">Hotels</h1>
+            <tr>
+                <th>Hotel Name</th>
+                <th>Place</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            {% for hotel in h %}
+            <tr class="hotelRow">
+                <td>{{ hotel.hotel_name }}</td>
+                <td>{{ hotel.station.place }}</td>
+                <td>{{ hotel.phone }}</td>
+                <td>{{ hotel.email }}</td>
+                <td>{{ hotel.status }}</td>
+                <td class="btn btn-warning"><a href="/passenger_view_category/{{hotel.id}}">Food Category</a></td>
+
+              
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('hotelSearchInput').addEventListener('input', function() {
+        const searchQuery = this.value.toLowerCase();
+        const hotelRows = document.querySelectorAll('.hotelRow');
+        hotelRows.forEach(function(row) {
+            const hotelName = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+            const stationName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            if (hotelName.includes(searchQuery) || stationName.includes(searchQuery)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+<br><br><br><br><br><br><br><br><br><br>
+{% include "footer.html" %}

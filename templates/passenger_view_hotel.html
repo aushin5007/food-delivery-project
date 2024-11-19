@@ -1,0 +1,50 @@
+{% include 'Passenger_header.html' %}
+
+<div class="banner">
+    <center>
+        <form method="post" id="hotelSearchForm">
+            {% csrf_token %}
+            <input type="text" id="hotelSearchInput" placeholder="Search hotel...">
+        </form>
+        <table class="table" style="width: 980px;color: #fff;">
+            <h1 style="color: #fff;">Hotels</h1>
+            <tr>
+                <th>Hotel Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Status</th>
+      
+            </tr>
+            {% for hotel in h %}
+            <tr class="hotelRow">
+                <td>{{ hotel.hotel_name }}</td>
+                <td>{{ hotel.phone }}</td>
+                <td>{{ hotel.email }}</td>
+                <td>{{ hotel.status }}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('hotelSearchInput').addEventListener('input', function() {
+        const searchQuery = this.value.toLowerCase();
+        const hotelRows = document.querySelectorAll('.hotelRow');
+        hotelRows.forEach(function(row) {
+            const hotelName = row.querySelector('td:first-child').textContent.toLowerCase();
+            if (hotelName.includes(searchQuery)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+
+{% include "footer.html"  %}

@@ -1,0 +1,68 @@
+{% include "passenger_header.html"  %}
+
+	<!-- start search-->	
+		<div class="banner">
+			
+	<center>
+		<form action="" method='post'>
+		<h1 style="color: #fff;">Add Trip</h1>
+	{% if up%}
+		<table class="table" style="width: 500px;color: #fff;">
+            <tr>
+                <td>Train :</td>
+                <td>
+                    <select name="train" class="form-control" required>
+                        <option>Select</option>
+                        {% for row in q %}
+                        <option value="{{ row.id}}">{{ row.train_name}}</option>
+                        {% endfor %}
+                </td>   
+            </tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-success"></td>
+		</tr>
+	</table>
+{% else %}
+	<table class="table" style="width: 500px;color: #fff;">
+		<tr>
+			<td>Train:</td>
+			<td>
+				<select name="train" class="form-control" required>
+					<option>Select</option>
+					{% for row in q %}
+					<option value="{{ row.id}}">{{ row.train_name}}</option>
+					{% endfor %}
+			</td>		
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-success"></td>
+		</tr>
+	</table>
+{% endif %}
+</center>
+<center>
+	<table class="table" style="width: 700px;color: #fff;">
+		<h1 align="center" style="color: #fff;">Trip</h1>
+		<tr>
+			<th>Sl. No</th>
+
+			<th>Train</th>
+            <th>Date</th>
+		</tr>
+		{% for row in qry %}
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{row.train.train_name}}</td>
+            <th>{{row.tdate}}</th>
+			<td><a class="btn btn-danger" href="/delete_manage_trip/{{row.id}}">Remove</a></td>
+			<td><a class="btn btn-danger" href="/update_manage_trip/{{row.id}}">update</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+	</form>
+	</center>
+		</div>
+</div>
+<!--content-->
+
+{% include "footer.html"  %}

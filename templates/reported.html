@@ -1,0 +1,36 @@
+{% include "passenger_header.html" %}
+
+	<!-- start search-->	
+    <div class="banner">
+			
+        <center>
+            <form  method='post' enctype="multipart/form-data">
+    
+            <h1 style="color: #fff;">Report Hotel</h1>
+            <table class="table" style="width: 500px;color: #fff;">
+                <tr>
+                    <th>Reason</th>
+                    <td><input type="text" name="reasonss" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>Hotel</td>
+                    <td>
+                        <select name="hotel" class="form-control" required>
+                            <option>Select</option>
+                            {% for row in q %}
+                            <option value="{{ row.id}}">{{ row.hotel_name}}</option>
+                            {% endfor %}
+                        </select>
+        
+                    </td>
+                    
+                </tr>
+                
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-warning"></td>
+                </tr>
+            </table>
+            </form>
+        </center></div>
+
+{% include "footer.html" %}

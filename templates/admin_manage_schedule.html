@@ -1,0 +1,99 @@
+{% include "adminheader.html"  %}
+
+	<!-- start search-->	
+		<div class="banner">
+			
+	<center>
+		<form action="" method='post'>
+{% if up %}
+		
+		<h1 style="color: #fff;">Manage Schedule</h1>
+		<table class="table" style="width: 500px;color: #fff;">
+		<tr>
+			<td>ArrivalTime :</td>
+			<td><input type="time" name="at" class="form-control" required value="{{up.arrivaltime}}"></td>
+			
+		</tr>
+        <tr>
+			<td>DepartureTime</td>
+			<td><input type="time" name="dt" class="form-control" required value="{{up.departuretime}}"></td>
+		</tr>		
+		<tr>
+            <td>stop station :</td>
+            <td>
+                <select name="stopstation" class="form-control" required>
+                    <option>Select</option>
+                    {% for row in q %}
+                    <option value="{{ row.id}}">{{ row.sname}}</option>
+                    {% endfor %}
+
+            </td>
+            
+        </tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-success"></td>
+		</tr>
+	</table>
+
+    {% else %}	
+		<h1 style="color: #fff;">Manage Schedule</h1>
+		<table class="table" style="width: 500px;color: #fff;">
+		<tr>
+			<td>ArrivalTime :</td>
+			<td><input type="time" name="at" class="form-control" required></td>
+			
+		</tr>
+        <tr>
+			<td>DepartureTime</td>
+			<td><input type="time" name="dt" class="form-control" required></td>
+		</tr>		
+		<tr>
+            <td>stop station :</td>
+            <td>
+                <select name="stopstation" class="form-control" required>
+                    <option>Select</option>
+                    {% for row in q %}
+                    <option value="{{ row.id}}">{{ row.sname}}</option>
+                    {% endfor %}
+
+            </td>
+            
+        </tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="Add" class="btn btn-success"></td>
+		</tr>
+	</table>
+    {% endif %}
+</center>
+<center>
+	<table class="table" style="width: 700px;color: #fff;">
+		<h1 align="center" style="color: #fff;">Category</h1>
+		<tr>
+			<th>Sl. No</th>
+
+			<th>ArrivalTime</th>
+            <th>DepartureTime</th>
+            <th>StopStation</th>
+            <th>Train</th>
+		</tr>
+		{% for row in qry1 %}
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{row.arrivaltime}}</td>
+            <td>{{row.departuretime}}</td>
+            <td>{{row.stopstation_id.sname}}</td>
+            <td>{{row.train_id.train_name}}</td>
+			<td><a class="btn btn-danger" href="/delete_schedule/{{row.id}}">Remove</a></td>
+            <td><a class="btn btn-danger" href="/update_schedule/{{row.id}}">Update</a></td>
+
+		</tr>
+		{% endfor %}
+	</table>
+	</form>
+	</center>
+		</div>
+</div>
+<!--content-->
+
+
+{% include "footer.html"  %}

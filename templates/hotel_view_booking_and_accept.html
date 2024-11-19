@@ -1,0 +1,48 @@
+{% include "hotelheader.html" %}
+
+
+<div class="banner">
+    <center>
+        <form>
+            <h1 style="color: #fff;">BOOKINGS</h1>
+            <table class="table" style="width: 1000px;color: #fff;">
+                <tr>
+                    <th>Passenger Name</th>
+                    <th>Food Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Amount</th>
+                    <th>Date</th>
+                    <!-- <th>Status</th> -->
+                    <th>Action</th>
+                </tr>
+                    
+                {% for row in q %}
+                <tr>
+                    <td>{{ row.passenger.fname }}</td>
+                    <td>{{ row.menu.food_name }}</td>
+                    <td>{{ row.price }}</td>
+                    <td>{{ row.qty }}</td>
+                    <td>{{ row.price }}</td>
+                    <td>{{ row.date_time }}</td>
+                    <!-- <td>{{ row.b_status }}</td> -->
+                    <td><a class="btn btn-primary" href="/passenger_details/{{ row.passenger_id }}">View User Details</a></td>
+
+                    {% if row.status == 'pending' %}
+                    <td><a class="btn btn-success" href="/hotel_view_booking_and_accepts/{{ row.id }}">Accept</a></td>
+                    <td><a class="btn btn-danger" href="/hotel_view_booking_and_reject/{{ row.id }}">Reject</a></td>
+                    {% endif %}
+                    
+                    {% if row.status == 'paid' %}
+					<!-- <td><a class="btn btn-primary" href="/hotel_assign_delivery_boy/{{ row.passenger_id }}/{{ row.booking_id }}">Assign Delivery Boy</a></td> -->
+					<td><a class="btn btn-primary" href="/hotel_view_payment">View Payment</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </center>
+</div>
+
+
+{% include "footer.html"%}

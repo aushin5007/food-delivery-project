@@ -1,0 +1,28 @@
+{%include 'adminheader.html'%}<body>
+
+    <br><br><br><br><br><br>
+    <center>
+    <h1 style="font-family: 'serif'; font-weight: normal;color: #fff">Payment</h1>
+    <div class="container mt-5">
+        <table class="table table-bordered"  style="color: #fff;">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" style="padding: 10px; background-color: #333;">Username</th>
+                    <th scope="col" style="padding: 10px; background-color: #333;">paymentfor</th>
+                    <th scope="col" style="padding: 10px; background-color: #333;">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in qry1 %}
+                    <tr>
+                        <td style="padding: 10px; background-color: #333;">{{i.booking.passenger.fname}} {{i.booking.passenger.lname}}</td>
+                        <td style="padding: 10px; background-color: #333;">{{i.payment_for}}</td>
+                        <td style="padding: 10px; background-color: #333;">{{i.booking.price}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </center>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    {%include 'footer.html'%}

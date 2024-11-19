@@ -1,0 +1,55 @@
+{% include "hotelheader.html" %}
+
+	<!-- start search-->	
+		<div class="banner">
+			
+<center>
+	<form method="post">
+		{% if data['asign_details'] %}
+
+		<table class="table" style="width: 700px;color: #fff;">
+			<h2 style="color: #fff;">Assign Details</h2>
+			<tr>
+				<th>Delivery Boy</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+
+			{% for row in ad %}
+			<tr>
+				<td>{{ row.d_name }}</td>
+				<td>{{ row.phone }}</td>
+				<td>{{ row.email }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+		{% else %}
+
+
+		<h1 style="color: #fff;">DELIVERY BOYS</h1>
+		<table class="table" style="width: 760px;color: #fff;">
+			<tr>
+				<td>
+					<select name="name" class="form-control" required>
+					<option>Select</option>
+					{% for row in db %}
+					<option value="{{ row.id}}">{{ row.name}}</option>
+					{% endfor %}
+				</select>
+				</td>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="assign" class="btn btn-warning"></td>
+			</tr>
+		</table>
+
+			{% endif  %}
+
+	</form>
+</center>
+		</div>
+</div>
+<!--content-->
+
+
+
+{% include "footer.html" %}

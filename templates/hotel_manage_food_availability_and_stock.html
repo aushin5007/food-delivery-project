@@ -1,0 +1,54 @@
+{% include "hotelheader.html" %}
+
+	<!-- start search-->	
+		<div class="banner">
+			
+		</div>
+</div>
+<!--content-->
+
+
+
+<center>
+<form method="post">
+	{% if data['stocks'] %}
+
+	<table>
+		<tr>
+			<td>Quantity</td>
+			<td><input type="number" name="stock" class="form-control" required></td>
+		</tr>
+		<tr>
+			<td><input type="submit" name="submitss" class="form-control" value="Update" class="btn btn-warning"></td>
+		</tr>
+	</table>
+
+	{% else %}
+	
+		<h1>manage food availability</h1>
+		
+		<table>
+		<h1>menu</h1>
+		<tr>
+			<th>Sl no</th>
+			<th>Food Name</th>
+			<th>Price</th>
+			<th>Quantity</th>
+		</tr>
+		{% for row in data['menu'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['food_name']}}</td>
+			<td>{{row['price']}}</td>
+			<td>{{row['quantity']}}</td>
+			<td><a class="btn btn-primary" href="?action=mangestock&mid={{row['menu_id']}}">MANAGE STOCK</a></td>
+			
+		</tr>
+		{% endfor %}
+	</table>
+	{% endif %}
+		
+	</form>
+	
+</center>
+{% include "footer.html" %}

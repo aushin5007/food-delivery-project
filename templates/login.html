@@ -1,0 +1,63 @@
+{% include "publicheader.html"%}
+
+	<!-- start search-->	
+		<div class="banner">
+			<center>
+		<h1 style="color: #fff">LOGIN</h1>
+		<table class="table" style="width: 500px;color: #fff">
+		<form action="" method="post">
+			{% csrf_token %}
+			<tr>
+				<td>Username :</td>
+				<td><input type="text" name="username" required class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Password :</td>
+				<td><input type="Password" required name="Password" class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="Login" value="Login" class="btn btn-success" class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><a href="/passenger_registration" class="btn btn-warning">register here</a></td>
+			</tr>
+			
+		</form>
+		
+			
+		</table>
+		
+
+	</center>
+			<!-- <a class="scroll down" href="#content-down"><img src="/static/images/down.png" alt=""></a> -->
+		</div>
+</div>
+<!--content-->
+
+	<!-- <center>
+		<h1>LOGIN</h1>
+		<table class="table" >
+		<form action="" method="post">
+			<tr>
+				<td>Username :</td>
+				<td><input type="text" name="username" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Password :</td>
+				<td><input type="Password" name="Password" class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="Login" value="Login" class="btn btn-success" class="form-control"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><a href="register" class="btn btn-warning">register here</a></td>
+			</tr>
+			
+		</form>
+		
+			
+		</table>
+		
+
+	</center> -->
+{% include "footer.html" %}
